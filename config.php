@@ -71,4 +71,14 @@ $conf['usuarioDatosPersonales'] = array(
 	'js' => array('usuario.class.js'),
 	'jsTemplate' => array('datosUsuario.js'),
 	'capa' => LAYOUT_DEFECTO);
+	
+/**/
+$conf['ubicacion'] = array(
+	#'controlador' => 'usuarios.php',
+	'vista' => 'localizacion/panel.tpl',
+	'descripcion' => 'Panel que muestra el mapa con la ubicación del usuario',
+	'seguridad' => true,
+	'js' => array('mapa.class.js'),
+	'jsTemplate' => array('localizacion.js'),
+	'capa' => LAYOUT_DEFECTO);
 ?>

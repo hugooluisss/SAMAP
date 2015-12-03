@@ -98,60 +98,8 @@ class TUsuario{
 		if ($this->getIdTipo() == '') return false;
 		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select nombre from tipoUsuario where idTipoUsuario = ".$this->getIdTipo());
+		$rs = $db->Execute("select nombre from tipoUsuario where idTipo = ".$this->getIdTipo());
 		return $rs->fields['nombre'];
-	}
-	
-	/**
-	* Establece el apellido paterno
-	*
-	* @autor Hugo
-	* @access public
-	* @param string $val Valor a asignar
-	* @return boolean True si se realizó sin problemas
-	*/
-	
-	public function setApp($val = ''){
-		$this->app = $val;
-		return true;
-	}
-	
-	/**
-	* Retorna el apellido paterno
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getApp(){
-		return $this->app;
-	}
-	
-	/**
-	* Establece el apellido materno
-	*
-	* @autor Hugo
-	* @access public
-	* @param string $val Valor a asignar
-	* @return boolean True si se realizó sin problemas
-	*/
-	
-	public function setApm($val = ''){
-		$this->apm = $val;
-		return true;
-	}
-	
-	/**
-	* Retorna las instrucciones
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getApm(){
-		return $this->apm;
 	}
 	
 	/**
@@ -178,18 +126,6 @@ class TUsuario{
 	
 	public function getNombre(){
 		return $this->nombre;
-	}
-	
-	/**
-	* Retorna el nombre completo iniciando por nombre
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getNombreCompleto(){
-		return $this->getNombre()." ".$this->getApp()." ".$this->getApm();
 	}
 	
 	/**
@@ -271,8 +207,6 @@ class TUsuario{
 			SET
 				idTipo = ".$this->getIdTipo().",
 				nombre = '".$this->getNombre()."',
-				app = '".$this->getApp()."',
-				apm = '".$this->getApm()."',
 				email = '".$this->getEmail()."',
 				pass = '".$this->getPass()."'
 			WHERE idUsuario = ".$this->getId());

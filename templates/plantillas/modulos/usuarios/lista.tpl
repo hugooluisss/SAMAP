@@ -8,8 +8,6 @@
 				<tr>
 					<th>#</th>
 					<th>Nombre</th>
-					<th>Ap. Paterno</th>
-					<th>Ap. Materno</th>
 					<th>Tipo</th>
 					<th>&nbsp;</th>
 				</tr>
@@ -19,8 +17,6 @@
 					<tr>
 						<td>{$row.idUsuario}</td>
 						<td>{$row.nombre}</td>
-						<td>{$row.app}</td>
-						<td>{$row.apm}</td>
 						<td>{$row.tipo}</td>
 						<td style="text-align: right">
 							<button type="button" class="btn btn-success btn-circle" action="modificar" title="Modificar" datos='{$row.json}'><i class="fa fa-pencil"></i></button>

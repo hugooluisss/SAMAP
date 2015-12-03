@@ -10,7 +10,7 @@ switch($objModulo->getId()){
 		
 		$datos = array();
 		while(!$rs->EOF){
-			$datos[$rs->fields['idTipoUsuario']] = $rs->fields['nombre'];
+			$datos[$rs->fields['idTipo']] = $rs->fields['nombre'];
 			$rs->moveNext();
 		}
 		
@@ -43,8 +43,6 @@ switch($objModulo->getId()){
 		global $sesion;
 		$usuario = new TUsuario($sesion['usuario']);
 		$smarty->assign("nombre", $usuario->getNombre());
-		$smarty->assign("app", $usuario->getApp());
-		$smarty->assign("apm", $usuario->getApm());
 	break;
 	case 'cusuarios':
 		switch($objModulo->getAction()){
@@ -57,7 +55,7 @@ switch($objModulo->getId()){
 				if (!$rs->EOF){ #si es que encontró el email
 					if ($rs->fields["idUsuario"] <> $_POST['id']){
 						$obj->setId($rs->fields['idUsuario']);
-						echo json_encode(array("band" => false, "mensaje" => "El email ya se encuentra registrado con el usuario ".$obj->getNombreCompleto()));
+						echo json_encode(array("band" => false, "mensaje" => "El email ya se encuentra registrado con el usuario ".$obj->getNombre()));
 						exit(1);
 					}
 				}
@@ -66,8 +64,6 @@ switch($objModulo->getId()){
 				
 				$obj->setId($_POST['id']);
 				$obj->setNombre($_POST['nombre']);
-				$obj->setApp($_POST['app']);
-				$obj->setApm($_POST['apm']);
 				$obj->setEmail($_POST['email']);
 				$obj->setPass($_POST['pass']);
 				$obj->setTipo($_POST['tipo']);
@@ -84,8 +80,6 @@ switch($objModulo->getId()){
 				$obj = new TUsuario();
 				$obj->setId($sesion['usuario']);
 				$obj->setNombre($_POST['nombre']);
-				$obj->setApp($_POST['app']);
-				$obj->setApm($_POST['apm']);
 				
 				echo json_encode(array("band" => $obj->guardar()));
 			break;

@@ -42,9 +42,9 @@
 			<!-- Logo -->
 			<a href="#" class="logo">
 				<!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b>C</b>otizador</span>
+				<span class="logo-mini"><b>SAMAP</b></span>
 				<!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><img src="{$PAGE.ruta}img/logo-min.png" class="img-rounded"/></span>
+				<span class="logo-lg"><b>.:: SAMAP ::.</b></span>
 			</a>
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top" role="navigation">
@@ -87,17 +87,9 @@
 						<li class="header">MENÚ PRINCIPAL</li>
 						{if $PAGE.tipoUsuario eq 1}
 						<li {if $PAGE.modulo eq 'admonUsuarios'}class="active"{/if}><a href="?mod=admonUsuarios"><i class="fa fa-user"></i> Usuarios</a></li>
-						<li {if $PAGE.modulo eq 'clientes'}class="active"{/if}><a href="?mod=clientes"><i class="fa fa-book"></i> Clientes</a></li>
-						<li {if $PAGE.modulo eq 'ropa'}class="active"{/if}><a href="?mod=ropa"><i class="fa fa-shopping-cart"></i> Ropa</a></li>
-						<li {if $PAGE.modulo eq 'serigrafia'}class="active"{/if}><a href="?mod=serigrafia"><i class="fa fa-tint"></i> Serigrafía</a></li>
-						<li {if $PAGE.modulo eq 'serigrafiaDigital'}class="active"{/if}><a href="?mod=serigrafiaDigital"><i class="fa fa-print"></i> Serigrafía digital</a></li>
-						<li {if $PAGE.modulo eq 'corteVinilo'}class="active"{/if}><a href="?mod=corteVinilo"><i class="fa fa-cut"></i> Vinilo de corte</a></li>
-						<li {if $PAGE.modulo eq 'numerosLetras'}class="active"{/if}><a href="?mod=numerosLetras"><i class="fa fa-slack"></i> Números y letras</a></li>
-						<li {if $PAGE.modulo eq 'tecnicasImpresion'}class="active"{/if}><a href="?mod=tecnicasImpresion"><i class="fa fa-language"></i> Otras técnicas</a></li>
-						<li {if $PAGE.modulo eq 'otrosServicios'}class="active"{/if}><a href="?mod=otrosServicios"><i class="fa fa-codepen"></i> Servicios adicionales</a></li>
 						{/if}
 						
-						<li {if $PAGE.modulo eq 'cotizador'}class="active"{/if}><a href="?mod=cotizador"><i class="fa fa-calculator"></i> Cotizador</a></li>
+						<li {if $PAGE.modulo eq 'ubicacion'}class="active"{/if}><a href="?mod=ubicacion"><i class="fa fa-map"></i> Envio de ubicaciones</a></li>
 					</ul>
 				</section>
 				<!-- /.sidebar -->
@@ -188,6 +180,9 @@
 	
 	<script src="javascript/usuario.class.js"></script>
 	<script src="{$PAGE.ruta}javascript/cambiarPass.js"></script>
+	<!-- Maps -->
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=es"></script>
+
     
     {if $PAGE.debug}
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js" type="text/javascript"></script>

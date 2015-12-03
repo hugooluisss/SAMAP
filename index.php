@@ -85,8 +85,7 @@ $datosPlantilla = array(
 	"alias" => "",
 	"rutaModulos" => TEMPLATE,
 	"modulo" => $modulo,
-	"scriptsJS" => $objModulo->getScriptsJS(),
-	"urlFotosTrabajadores" => $ini['sip']['fotos']);
+	"scriptsJS" => $objModulo->getScriptsJS());
 
 foreach($_GET as $indice => $valor){
 	$_GET[$indice] = ereg_replace('\\"', "",$_GET[$indice]);
