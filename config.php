@@ -78,7 +78,20 @@ $conf['ubicacion'] = array(
 	'vista' => 'localizacion/panel.tpl',
 	'descripcion' => 'Panel que muestra el mapa con la ubicación del usuario',
 	'seguridad' => true,
-	'js' => array('mapa.class.js'),
+	'js' => array('mapa.class.js', 'reporte.class.js'),
 	'jsTemplate' => array('localizacion.js'),
 	'capa' => LAYOUT_DEFECTO);
+
+$conf['gw_reporte'] = array(
+	'controlador' => 'reporte.php',
+	'descripcion' => 'Gateway ubicaciones',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
+	
+$conf['listaReportes'] = array(
+	'controlador' => 'reporte.php',
+	'vista' => 'localizacion/lista.tpl',
+	'descripcion' => 'Lista de reportes',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
 ?>

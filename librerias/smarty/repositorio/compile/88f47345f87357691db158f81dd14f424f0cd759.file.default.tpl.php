@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-12-03 12:23:59
+<?php /* Smarty version Smarty-3.1.11, created on 2015-12-08 10:37:02
          compiled from "templates/plantillas/layout/default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:17207770795660804e8dc101-10233468%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88f47345f87357691db158f81dd14f424f0cd759' => 
     array (
       0 => 'templates/plantillas/layout/default.tpl',
-      1 => 1449167034,
+      1 => 1449592613,
       2 => 'file',
     ),
   ),
@@ -148,7 +148,7 @@ plugins/upload/css/jquery.fileupload.css">
 			<!-- Main content -->
 			<section class="content">
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-xs-12">
 					<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['vista']!=''){?>
 						<?php echo $_smarty_tpl->getSubTemplate ($_smarty_tpl->tpl_vars['PAGE']->value['vista'], $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 

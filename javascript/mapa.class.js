@@ -1,6 +1,9 @@
 TMapa = function(){
 	var self = this;
 	var map;
+	var geocoder = new google.maps.Geocoder;
+	var posicionActual = new google.maps.Marker();
+	var marcas;
 	
 	this.setDiv = function(div){
 		var options = {
@@ -8,14 +11,9 @@ TMapa = function(){
 			center: new google.maps.LatLng(18.2, -66.4), 
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
-
+		
 		self.map = new google.maps.Map($(div)[0], options);
-		self.getUbicacion({
-			onSuccessGeolocating: function(posicion){
-				self.map.setCenter({lat: posicion.coords.latitude, lng: posicion.coords.longitude});
-				self.incluirMarca(posicion.coords.latitude, posicion.coords.longitude, "Posición incial");
-			}
-		});
+		self.marcas = new Array();
 	};
 	
 	this.getUbicacion = function(fn){
@@ -34,15 +32,28 @@ TMapa = function(){
 		}
 	};
 	
-	this.incluirMarca = function(latitud, longitud, titulo){
+	this.incluirMarca = function(latitud, longitud, parametros){
+		if (parametros.icono === undefined || parametros.icono == "")
+			parametros.icono = null;
+		
+		if (parametros.centrar === undefined || parametros.icono == "")
+			parametros.centrar = true;
+			
 		var marker = new google.maps.Marker({
-			position: {lat: latitud, lng: longitud},
+			position: {lat: parseFloat(latitud), lng: parseFloat(longitud)},
 			map: self.map,
-			title: titulo
+			icon: {
+		    	path: parametros.icono,
+		    	scale: 10
+		    },
+			animation: google.maps.Animation.DROP
 		});
 		
-		console.log("Marca agregada: " + latitud + ", " + longitud + ", " + titulo);
+		if (parametros.centrar)
+			self.map.setCenter({lat: parseFloat(latitud), lng: parseFloat(longitud)});
 		
+		console.log("Marca agregada: " + latitud + ", " + longitud);
+		return marker;
 	}
 	
 	this.onSuccessGeolocating = function(posicion){
@@ -65,5 +76,18 @@ TMapa = function(){
 				console.log("ERROR: Unknown problem!");
 			break;
 		}
+	};
+	
+	this.getDireccion = function(latitud, longitud, fn){
+		if (self.geocoder === undefined)
+			self.geocoder = new google.maps.Geocoder;
+		
+		self.geocoder.geocode({'location': {lat: latitud, lng: longitud}}, function(results, status){
+			if (status === google.maps.GeocoderStatus.OK) {
+				console.log("Dirección encontrada: " + results[1].formatted_address);
+				if (fn.ok !== undefined) fn.ok(results);
+			}else
+				if (fn.error !== undefined) fn.erro();
+		});
 	};
 };

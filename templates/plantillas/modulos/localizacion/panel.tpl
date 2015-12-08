@@ -6,7 +6,11 @@
 		<div class="btn-group" role="group" aria-label="...">
 			<button type="button" class="btn btn-default" id="btnEnviarUbicacion">Enviar ubicación</button>
 		</div>
-		<br />
-    	<div id="dvMapa" class="col-xs-12" style="height: 300px;"></div>
+		<br /><br />
+    	<div id="dvMapa" class="col-xs-12 col-sm-12" style="height: 300px; width: 100%;"></div>
     </div>
 </div>
+
+<div id="dvLista"></div>
+
+{include file=$PAGE.rutaModulos|cat:"modulos/localizacion/addComentario.tpl"}

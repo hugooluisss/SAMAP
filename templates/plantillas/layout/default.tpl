@@ -105,7 +105,7 @@
 			<!-- Main content -->
 			<section class="content">
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-xs-12">
 					{if $PAGE.vista neq ''}
 						{include file=$PAGE.vista}
 					{/if}
