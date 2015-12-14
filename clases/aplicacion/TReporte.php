@@ -200,32 +200,6 @@ class TReporte{
 	}
 	
 	/**
-	* Establece un comentario
-	*
-	* @autor Hugo
-	* @access public
-	* @param string $val Comentario
-	* @return boolean True si se realizó sin problemas
-	*/
-	
-	public function setComentario($val = ''){
-		$this->comentario = $val;
-		return true;
-	}
-	
-	/**
-	* Retorna el comentario
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getComentario(){
-		return $this->comentario;
-	}
-	
-	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -252,8 +226,7 @@ class TReporte{
 			SET
 				latitud = '".$this->getLatitud()."',
 				longitud = '".$this->getLongitud()."',
-				direccion = '".$this->getDireccion()."',
-				comentario = '".$this->getComentario()."'
+				direccion = '".$this->getDireccion()."'
 			WHERE idReporte = ".$this->getId());
 			
 		return $rs?true:false;

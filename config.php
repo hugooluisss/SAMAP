@@ -74,7 +74,7 @@ $conf['usuarioDatosPersonales'] = array(
 	
 /**/
 $conf['ubicacion'] = array(
-	#'controlador' => 'usuarios.php',
+	'controlador' => 'reporte.php',
 	'vista' => 'localizacion/panel.tpl',
 	'descripcion' => 'Panel que muestra el mapa con la ubicación del usuario',
 	'seguridad' => true,
