@@ -1,7 +1,7 @@
 TReporte = function(){
 	var self = this;
 	
-	this.add = function(id, latitud, longitud, direccion, comentario, fn){
+	this.add = function(id, latitud, longitud, direccion, campo1, campo2, campo3, fn){
 		if (fn.before !== undefined) fn.before();
 		
 		$.post('?mod=gw_reporte&action=add', {
@@ -9,7 +9,9 @@ TReporte = function(){
 				"latitud": latitud, 
 				"longitud": longitud,
 				"direccion": direccion,
-				"comentario": comentario
+				"campo1": campo1,
+				"campo2": campo2,
+				"campo3": campo3
 			}, function(data){
 				if (data.band == 'false')
 					console.log(data.mensaje);
@@ -18,6 +20,22 @@ TReporte = function(){
 					fn.after(data);
 			}, "json");
 	};
+	
+	this.addPosicion = function(latitud, longitud, direccion, fn){
+		if (fn.before !== undefined) fn.before();
+		
+		$.post('?mod=gw_reporte&action=getUbicacion', {
+				"latitud": latitud, 
+				"longitud": longitud,
+				"direccion": direccion
+			}, function(data){
+				if (data.band == 'false')
+					console.log(data.mensaje);
+					
+				if (fn.after !== undefined)
+					fn.after(data);
+			}, "json");
+	}
 	
 	this.del = function(id, fn){
 		$.post('?mod=gw_reporte&action=del', {

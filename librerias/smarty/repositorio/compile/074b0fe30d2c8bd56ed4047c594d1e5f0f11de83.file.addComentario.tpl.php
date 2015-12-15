@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-12-08 12:58:43
+<?php /* Smarty version Smarty-3.1.11, created on 2015-12-15 09:55:27
          compiled from "templates/plantillas/modulos/localizacion/addComentario.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:164617632456671a61b81116-24940169%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '074b0fe30d2c8bd56ed4047c594d1e5f0f11de83' => 
     array (
       0 => 'templates/plantillas/modulos/localizacion/addComentario.tpl',
-      1 => 1449601121,
+      1 => 1450194926,
       2 => 'file',
     ),
   ),
@@ -39,11 +39,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<div class="col-xs-offset-4 col-xs-4" id="longitud"></div>
 				</div>
 				<div class="row">
-					<label class="col-xs-4" for="txtComentario">Comentario</label>
+					<label class="col-xs-4" for="txtCampo1">Campo 1</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="txtCampo1" name="txtCampo1">
+					</div>
 				</div>
+				<br />
 				<div class="row">
-					<div class="col-xs-12">
-						<textarea class="form-control" id="txtComentario" name="txtComentario"></textarea>
+					<label class="col-xs-4" for="txtCampo2">Campo 2</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="txtCampo2" name="txtCampo2">
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<label class="col-xs-4" for="txtCampo3">Campo 3</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="txtCampo3" name="txtCampo3">
 					</div>
 				</div>
 			</div>

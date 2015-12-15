@@ -90,6 +90,7 @@
 						{/if}
 						
 						<li {if $PAGE.modulo eq 'ubicacion'}class="active"{/if}><a href="?mod=ubicacion"><i class="fa fa-map"></i> Envio de ubicaciones</a></li>
+						<li {if $PAGE.modulo eq 'reporte'}class="active"{/if}><a href="?mod=reporte"><i class="fa fa-paper-plane"></i> Reporte</a></li>
 					</ul>
 				</section>
 				<!-- /.sidebar -->

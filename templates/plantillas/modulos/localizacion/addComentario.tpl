@@ -18,11 +18,23 @@
 					<div class="col-xs-offset-4 col-xs-4" id="longitud"></div>
 				</div>
 				<div class="row">
-					<label class="col-xs-4" for="txtComentario">Comentario</label>
+					<label class="col-xs-4" for="txtCampo1">Campo 1</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="txtCampo1" name="txtCampo1">
+					</div>
 				</div>
+				<br />
 				<div class="row">
-					<div class="col-xs-12">
-						<textarea class="form-control" id="txtComentario" name="txtComentario"></textarea>
+					<label class="col-xs-4" for="txtCampo2">Campo 2</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="txtCampo2" name="txtCampo2">
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<label class="col-xs-4" for="txtCampo3">Campo 3</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="txtCampo3" name="txtCampo3">
 					</div>
 				</div>
 			</div>

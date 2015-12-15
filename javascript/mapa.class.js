@@ -87,7 +87,7 @@ TMapa = function(){
 				console.log("Dirección encontrada: " + results[1].formatted_address);
 				if (fn.ok !== undefined) fn.ok(results);
 			}else
-				if (fn.error !== undefined) fn.erro();
+				if (fn.error !== undefined) fn.error();
 		});
 	};
 };

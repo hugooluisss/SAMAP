@@ -17,11 +17,45 @@ $(document).ready(function(){
 				console.log("Localizando");
 			}
 		});
-			
 		setTimeout(obtenerUbicacion, 3000);
 	}
 	
 	obtenerUbicacion();
+	
+	function enviarCoordenadas(){
+		mapa.getUbicacion({
+			onSuccessGeolocating: function(posicion){
+				mapa.getDireccion(posicion.coords.latitude, posicion.coords.longitude, {
+					ok: function(data){
+							var reporte = new TReporte();
+							reporte.addPosicion(posicion.coords.latitude, posicion.coords.longitude, data[1].formatted_address, {
+								after: function(result){
+									getLista();
+									setTimeout(enviarCoordenadas, result.proximo);
+								}
+							});
+					},
+					error: function(){
+						var reporte = new TReporte();
+						reporte.addPosicion(posicion.coords.latitude, posicion.coords.longitude, "No se pudo determinar", {
+							after: function(result){
+								getLista();
+								setTimeout(enviarCoordenadas, result.proximo);
+							}
+						});
+					}
+				});
+			},
+			onErrorGeolocating: function(error){
+				console.log("No se pudo determinar la latitud y longitud, checar el GPS");
+				setTimeout(enviarCoordenadas, 6000);
+				
+				mapa.onErrorGeolocating(error);
+			}
+		});
+	}
+	
+	enviarCoordenadas();
 	
 	$("#btnEnviarUbicacion").click(function(){
 		$("#btnEnviarUbicacion").prop("disabled", true);
@@ -38,7 +72,7 @@ $(document).ready(function(){
 					ok: function(results){
 						$("#modalComentario #ubicacion").html(results[1].formatted_address);
 						$("#modalComentario #guardar").prop("disabled", false);
-						$("#modalComentario #txtComentario").val("");
+						//$("#modalComentario #txtComentario").val("");
 					},
 					error: function(){
 						alert("No se pudo determinar su dirección");
@@ -52,7 +86,7 @@ $(document).ready(function(){
 	$("#modalComentario #guardar").click(function(){
 		var obj = new TReporte;
 		
-		obj.add('', $("#modalComentario #latitud").html(), $("#modalComentario #longitud").html(), $("#modalComentario #ubicacion").html(), $("#modalComentario #txtComentario").val(), {
+		obj.add('', $("#modalComentario #latitud").html(), $("#modalComentario #longitud").html(), $("#modalComentario #ubicacion").html(), $("#txtCampo1").val(), $("#txtCampo2").val(), $("#txtCampo3").val(), {
 			after: function(data){
 				if (data.band){
 					$("#modalComentario").modal("hide");

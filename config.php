@@ -94,4 +94,20 @@ $conf['listaReportes'] = array(
 	'descripcion' => 'Lista de reportes',
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
+	
+$conf['reporte'] = array(
+	'controlador' => 'reporte.php',
+	'vista' => 'reporte/panel.tpl',
+	'descripcion' => 'Lista de ubicaciones',
+	'seguridad' => true,
+	#'js' => array('mapa.class.js', 'reporte.class.js'),
+	'jsTemplate' => array('reporte.js'),
+	'capa' => LAYOUT_DEFECTO);
+	
+$conf['posicionesPorDia'] = array(
+	'controlador' => 'reporte.php',
+	'vista' => 'reporte/lista.tpl',
+	'descripcion' => 'Lista de reportes',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
 ?>

@@ -200,6 +200,84 @@ class TReporte{
 	}
 	
 	/**
+	* Establece el campo 1
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setCampo1($val = ''){
+		$this->campo1 = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna el valor del campo 1
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getCampo1(){
+		return $this->campo1;
+	}
+	
+	/**
+	* Establece el campo 2
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setCampo2($val = ''){
+		$this->campo2 = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna el valor del campo 2
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getCampo2(){
+		return $this->campo2;
+	}
+	
+	/**
+	* Establece el campo 3
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setCampo3($val = ''){
+		$this->campo3 = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna el valor del campo 3
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getCampo3(){
+		return $this->campo3;
+	}
+	
+	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -244,6 +322,31 @@ class TReporte{
 		if ($this->getId() == '') return false;
 		$db = TBase::conectaDB();
 		$rs = $db->Execute("delete from reporte where idReporte = ".$this->getId());
+		
+		return $rs?true:false;
+	}
+	
+	/**
+	* Agregar comentarios
+	*
+	* @autor Hugo
+	* @access public
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setComentarios(){
+		if ($this->getId() == '') return false;
+		$db = TBase::conectaDB();
+		$rs = $db->Execute("select idReporte from comentario where idReporte = ".$this->getId());
+		
+		if ($rs->EOF){
+			$rs = $db->Execute("insert into comentario (idReporte, campo1, campo2, campo3) values (".$this->getId().", '".$this->getCampo1()."', '".$this->getCampo2()."', '".$this->getCampo3()."')");
+		}else
+			$rs = $db->Execute("update comentario set
+					campo1 = '".$this->getCampo1()."',
+					campo2 = '".$this->getCampo2()."',
+					campo3 = '".$this->getCampo3()."'
+				where idReporte = ".$this->getId());
 		
 		return $rs?true:false;
 	}
