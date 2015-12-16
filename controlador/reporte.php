@@ -88,6 +88,40 @@ switch($objModulo->getId()){
 				
 				echo json_encode(array("band" => $band, "proxima" => $nuevaFecha, "proximoTimeStamp" => $proxTimeStamp, "proximo" => $tiempo * 1000, "aux" => strtotime("now")));
 			break;
+			case 'reportarViaEMail':
+				$db = TBase::conectaDB();
+				$email = new TMail;
+				$usuario = new TUsuario();
+				$reporte = new TReporte($_GET['reporte']);
+				
+				$email->setTema(utf8_decode("Reporte de ubicación"));
+				$rs = $db->Execute("select * from usuario where idTipo = 1");
+				
+				$img = "temporal/img.jpg";
+				file_put_contents($img, file_get_contents("https://maps.googleapis.com/maps/api/staticmap?center=".$reporte->getLatitud().",".$reporte->getLongitud()."&zoom=16&size=600x400&format=JPG&markers=color:green|label:M|".$reporte->getLatitud().",".$reporte->getLongitud().""));
+				
+				while(!$rs->EOF){
+					$email->setDestino($rs->fields['email'], utf8_decode($rs->fiels['nombre']));
+					$datos = array();
+					$usuario->setId($rs->fields['idUsuario']);
+					$datos['nombreCompleto'] = $usuario->getNombre();
+					$usuario->setId($reporte->getIdUsuario());
+					$datos['nombreCompletoReportado'] = $usuario->getNombre();
+					$datos['Latitud'] = $reporte->getLatitud();
+					$datos['Longitud'] = $reporte->getLongitud();
+					$datos['Fecha'] = $reporte->getFecha();
+					$datos['Direccion'] = $reporte->getDireccion();
+					
+					$email->setBodyHTML(utf8_decode($email->construyeMail(file_get_contents("repositorio/mail/ubicacion.txt"), $datos)));
+					$email->adjuntar($img);
+					$email->send();
+					
+					$rs->moveNext();
+				}
+				
+				$result = array("doc" => $documento, "band" => true);
+				echo $result;
+			break;
 		}
 	break;
 }

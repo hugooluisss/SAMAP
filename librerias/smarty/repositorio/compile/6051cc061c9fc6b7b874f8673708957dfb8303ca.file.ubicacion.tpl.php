@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-12-15 12:22:40
+<?php /* Smarty version Smarty-3.1.11, created on 2015-12-16 11:45:46
          compiled from "templates/plantillas/modulos/reporte/ubicacion.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:808952227567052586fb149-96263156%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6051cc061c9fc6b7b874f8673708957dfb8303ca' => 
     array (
       0 => 'templates/plantillas/modulos/reporte/ubicacion.tpl',
-      1 => 1450203759,
+      1 => 1450287943,
       2 => 'file',
     ),
   ),
@@ -30,15 +30,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<img src="" id="mapa">
 					<div class="caption">
 						<div class="row">
-							<div class="col-xs-4">Fecha</div>
+							<div class="col-xs-4"><b>Fecha</b></div>
 							<div class="col-xs-4" id="lblFecha"></div>
 						</div>
 						<div class="row">
-							<div class="col-xs-4">Latitud</div>
+							<div class="col-xs-4"><b>Latitud</b></div>
 							<div class="col-xs-4" id="lblLatitud"></div>
 						</div>
 						<div class="row">
-							<div class="col-xs-4">Longitud</div>
+							<div class="col-xs-4"><b>Longitud</b></div>
 							<div class="col-xs-4" id="lblLongitud"></div>
 						</div>
 					</div>
@@ -46,7 +46,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-				<button class="btn btn-primary" id="guardar">Enviar</button>
+				<button class="btn btn-primary" id="enviarPorEmail">Enviar correo electrónico</button>
+				<input type="hidden" value="" id="idReporte" name="idReporte">
 			</div>
 		</div>
 	</div>

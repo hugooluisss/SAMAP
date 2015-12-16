@@ -1,0 +1,27 @@
+Estimado(a) /#nombreCompleto#/:
+<br />
+<p>
+El sistema ha recibido la solicitud de enviarle la ubicación de /#nombreCompletoReportado#/, el mapa de la ubicación se encuentra adjunto al presente correo. A continuación los datos:
+</p>
+<p>
+<ul>
+	<li><b>Latitud: </b> /#Latitud#/</li>
+	<li><b>Longitud: </b> /#Longitud#/</li>
+	<li><b>Fecha y hora: </b> /#Fecha#/</li>
+	<li><b>Dirección: </b> /#Direccion#/</li>
+</ul>
+</p>
+
+<br><br><br>
+
+<small>
+<b>Información importante</b>
+Este mensaje es generado automáticamente por el Sistema de Cotizaciones en linea
+<br><br>
+<b>Información confidencial</b><br>
+La información transmitida es para el uso exclusivo de la persona o entidad a quien va dirigida, 
+y puede contener información de caracter confidencial o privilegiado. Se prohíbe a cualquier 
+persona o entidad distinta al destinatario, cualquier revisión, retransmisión, distribución u 
+otro uso de la información. Si recibió este mensaje por equivocación, atentamente le solicitamos 
+eliminar la información de cualquier equipo de cómputo y hacerlo de conocimiento de remitente.
+</small>

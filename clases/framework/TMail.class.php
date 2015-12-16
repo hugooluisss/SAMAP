@@ -26,7 +26,7 @@ class TMail{
 		
 		$this->empresa['nombreCorto'] = utf8_decode($ini['sistema']['nombreEmpresa']);
 		$this->phpMailer->IsSMTP();
-		$this->phpMailer->Port = 25;
+		$this->phpMailer->Port = 26;
 		$this->phpMailer->Host = $ini['mail']['server'];
 
 		$this->phpMailer->SMTPAuth = true;

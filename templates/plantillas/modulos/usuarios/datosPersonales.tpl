@@ -9,17 +9,8 @@
 		<div class="box-body">
 			<div class="form-group">
 				<label for="txtNombre" class="col-lg-2">Nombre completo</label>
-				<div class="col-lg-3">
+				<div class="col-lg-5">
 					<input class="form-control" id="txtNombre" name="txtNombre" value="{$nombre}">
-					<span class="help-block">Nombre(s)</span>
-				</div>
-				<div class="col-lg-3">
-					<input class="form-control" id="txtApp" name="txtApp" value="{$app}">
-					<span class="help-block">Apellido paterno</span>
-				</div>
-				<div class="col-lg-3">
-					<input class="form-control" id="txtApm" name="txtApm" value="{$apm}">
-					<span class="help-block">Apellido materno</span>
 				</div>
 			</div>
 		</div>

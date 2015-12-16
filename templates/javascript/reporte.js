@@ -21,6 +21,7 @@ $(document).ready(function(){
 				$("#lblFecha").html(el.attr("fecha"));
 				$("#lblLatitud").html(el.attr("latitud"));
 				$("#lblLongitud").html(el.attr("longitud"));
+				$("#modalPosicion #idReporte").val(el.attr("reporte"));
 			});
 			
 			$("#tblReportes").DataTable({
@@ -37,4 +38,14 @@ $(document).ready(function(){
 			});
 		});
 	}
+	
+	/*Modal*/
+	
+	$("#enviarPorEmail").click(function(){
+		$.get("?mod=gw_reporte&action=reportarViaEMail&reporte=" + $("#modalPosicion #idReporte").val(), function( data ) {
+			alert(data.band);
+		}, "json");
+		
+		alert("El correo electrónico se está enviando, puedes seguir utilizando la aplicación");
+	});
 });
