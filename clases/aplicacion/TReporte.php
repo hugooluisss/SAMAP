@@ -44,6 +44,14 @@ class TReporte{
 		
 		foreach($rs->fields as $field => $val)
 			$this->$field = $val;
+			
+		if (!$rs->EOF){
+			$rs = $db->Execute("select campo1, campo2 campo3 from comentario where idReporte = ".$rs->fields['idReporte']);
+			
+			foreach($rs->fields as $field => $val){
+				$this->$field = $val;
+			}
+		}
 		
 		return true;
 	}

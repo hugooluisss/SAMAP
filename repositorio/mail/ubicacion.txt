@@ -12,6 +12,11 @@ El sistema ha recibido la solicitud de enviarle la ubicación de /#nombreComplet
 </ul>
 </p>
 
+<p><b>Comentarios</b></p>
+<p>/#comentario1#/</p>
+<p>/#comentario2#/</p>
+<p>/#comentario3#/</p>
+
 <br><br><br>
 
 <small>

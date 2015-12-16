@@ -98,7 +98,7 @@ switch($objModulo->getId()){
 				$rs = $db->Execute("select * from usuario where idTipo = 1");
 				
 				$img = "temporal/img.jpg";
-				file_put_contents($img, file_get_contents("https://maps.googleapis.com/maps/api/staticmap?center=".$reporte->getLatitud().",".$reporte->getLongitud()."&zoom=16&size=600x400&format=JPG&markers=color:green|label:M|".$reporte->getLatitud().",".$reporte->getLongitud().""));
+				file_put_contents($img, file_get_contents("https://maps.googleapis.com/maps/api/staticmap?center=".$reporte->getLatitud().",".$reporte->getLongitud()."&zoom=16&size=300x250&format=JPG&markers=color:green|label:M|".$reporte->getLatitud().",".$reporte->getLongitud().""));
 				
 				while(!$rs->EOF){
 					$email->setDestino($rs->fields['email'], utf8_decode($rs->fiels['nombre']));
@@ -111,6 +111,9 @@ switch($objModulo->getId()){
 					$datos['Longitud'] = $reporte->getLongitud();
 					$datos['Fecha'] = $reporte->getFecha();
 					$datos['Direccion'] = $reporte->getDireccion();
+					$datos['comentario1'] = $reporte->getCampo1();
+					$datos['comentario2'] = $reporte->getCampo2();
+					$datos['comentario3'] = $reporte->getCampo3();
 					
 					$email->setBodyHTML(utf8_decode($email->construyeMail(file_get_contents("repositorio/mail/ubicacion.txt"), $datos)));
 					$email->adjuntar($img);

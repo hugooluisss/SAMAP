@@ -68,6 +68,9 @@ $(document).ready(function(){
 				$("#modalComentario #latitud").html(posicion.coords.latitude);
 				$("#modalComentario #longitud").html(posicion.coords.longitude);
 				$("#modalComentario #guardar").prop("disabled", true);
+				$("#txtCampo1").val("");
+				$("#txtCampo3").val("");
+				$("#txtCampo2").val("");
 				mapa.getDireccion(posicion.coords.latitude, posicion.coords.longitude, {
 					ok: function(results){
 						$("#modalComentario #ubicacion").html(results[1].formatted_address);
