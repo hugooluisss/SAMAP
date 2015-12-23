@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-12-03 11:56:43
+<?php /* Smarty version Smarty-3.1.11, created on 2015-12-23 09:23:47
          compiled from "templates/plantillas/modulos/usuarios/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:97796727456608127f29604-70970305%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '75fca16c9665563fbe115b9d9483a90d1409c54e' => 
     array (
       0 => 'templates/plantillas/modulos/usuarios/panel.tpl',
-      1 => 1449165324,
+      1 => 1450884182,
       2 => 'file',
     ),
   ),
@@ -22,6 +22,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tipos' => 0,
     'key' => 0,
     'item' => 0,
+    'PAGE' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -83,6 +84,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 							<input class="form-control" id="txtPass" name="txtPass" type="password">
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="txtCelular" class="col-lg-2">Celular</label>
+						<div class="col-lg-3">
+							<input class="form-control" id="txtCelular" name="txtCelular" type="text">
+						</div>
+					</div>
 				</div>
 				<div class="box-footer">
 					<button type="reset" id="btnReset" class="btn btn-default">Cancelar</button>
@@ -92,4 +99,7 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 			</div>
 		</form>
 	</div>
-</div><?php }} ?>
+</div>
+
+<?php echo $_smarty_tpl->getSubTemplate (($_smarty_tpl->tpl_vars['PAGE']->value['rutaModulos']).("modulos/usuarios/modalUbicar.tpl"), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+<?php }} ?>

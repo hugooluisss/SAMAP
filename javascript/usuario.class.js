@@ -1,7 +1,7 @@
 TUsuario = function(){
 	var self = this;
 	
-	this.add = function(id,	nombre, app, apm, email, pass, tipo, fn){
+	this.add = function(id,	nombre, app, apm, email, pass, tipo, celular, fn){
 		if (fn.before !== undefined) fn.before();
 		
 		$.post('?mod=cusuarios&action=add', {
@@ -11,7 +11,8 @@ TUsuario = function(){
 				"apm": apm, 
 				"email": email, 
 				"pass": pass,
-				"tipo": tipo
+				"tipo": tipo,
+				"celular": celular
 			}, function(data){
 				if (data.band == 'false')
 					console.log(data.mensaje);

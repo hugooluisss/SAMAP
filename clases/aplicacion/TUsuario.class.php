@@ -14,6 +14,7 @@ class TUsuario{
 	private $nombre;
 	private $email;
 	private $pass;
+	private $celular;
 	
 	/**
 	* Constructor de la clase
@@ -181,6 +182,32 @@ class TUsuario{
 	}
 	
 	/**
+	* Establece el número de celular
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setCelular($val = ''){
+		$this->celular = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna el número de celular
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getCelular(){
+		return $this->celular;
+	}
+	
+	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -208,7 +235,8 @@ class TUsuario{
 				idTipo = ".$this->getIdTipo().",
 				nombre = '".$this->getNombre()."',
 				email = '".$this->getEmail()."',
-				pass = '".$this->getPass()."'
+				pass = '".$this->getPass()."',
+				celular = '".$this->getCelular()."'
 			WHERE idUsuario = ".$this->getId());
 			
 		return $rs?true:false;

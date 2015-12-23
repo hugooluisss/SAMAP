@@ -35,12 +35,16 @@ switch($objModulo->getId()){
 		}
 		$smarty->assign("usuarios", $datos);
 	break;
+	case 'reportarUbicacion':
+		$smarty->assign("origen", base64_decode($_GET['usuario']));
+		$smarty->assign("destino", base64_decode($_GET['solicita']));
+	break;
 	case 'gw_reporte':
 		switch($objModulo->getAction()){
 			case 'add':
 				$obj = new TReporte();
 				$obj->setId($_POST['id']);
-				$obj->setUsuario($sesion['usuario']);
+				$obj->setUsuario($_POST['usuario'] == ''?$sesion['usuario']:$_POST['usuario']);
 				$obj->setLatitud($_POST['latitud']);
 				$obj->setLongitud($_POST['longitud']);
 				$obj->setDireccion($_POST['direccion']);
@@ -48,7 +52,7 @@ switch($objModulo->getId()){
 				$obj->setCampo2($_POST['campo2']);
 				$obj->setCampo3($_POST['campo3']);
 				
-				echo json_encode(array("band" => $obj->guardar()));
+				echo json_encode(array("band" => $obj->guardar(), "id" => $obj->getId()));
 				
 				$obj->setComentarios();
 			break;
@@ -62,7 +66,12 @@ switch($objModulo->getId()){
 				$db = TBase::conectaDB();
 				global $sesion;
 				global $ini;
-				$tiempo = $ini["parametros"]["reportarCada"];
+				$data = json_decode(file_get_contents("data.json"));
+				$configuracion = array();
+				foreach($data as $key => $val)
+					$configuracion[$key] = $val;
+					
+				$tiempo = $configuracion["reportarCada"] == ''?$ini["parametros"]["reportarCada"]:$configuracion["reportarCada"];
 				$rs = $db->Execute("select * from reporte where idUsuario = ".$sesion['usuario']." order by fecha desc");
 				$band = false;
 				
@@ -70,7 +79,7 @@ switch($objModulo->getId()){
 					$proxTimeStamp = strtotime("now");
 					$nuevaFecha = date("Y-m-d H:i:s");
 				}else{
-					$proxTimeStamp = strtotime('+'.$tiempo.' second', strtotime($rs->fields['fecha']));
+					$proxTimeStamp = strtotime('+'.$tiempo.' minutes', strtotime($rs->fields['fecha']));
 					$nuevaFecha = date("Y-m-d H:i:s", $proxTimeStamp);
 				}
 				
@@ -82,11 +91,11 @@ switch($objModulo->getId()){
 					$obj->setDireccion($_POST['direccion']);
 					$band = $obj->guardar();
 					
-					$proxTimeStamp = strtotime('+'.$tiempo.' second', strtotime("now"));
+					$proxTimeStamp = strtotime('+'.$tiempo.' minutes', strtotime("now"));
 					$nuevaFecha = date("Y-m-d H:i:s", $proxTimeStamp);
 				}
 				
-				echo json_encode(array("band" => $band, "proxima" => $nuevaFecha, "proximoTimeStamp" => $proxTimeStamp, "proximo" => $tiempo * 1000, "aux" => strtotime("now")));
+				echo json_encode(array("band" => $band, "proxima" => $nuevaFecha, "proximoTimeStamp" => $proxTimeStamp, "proximo" => $tiempo * 1000 * 60, "aux" => strtotime("now")));
 			break;
 			case 'reportarViaEMail':
 				$db = TBase::conectaDB();
@@ -95,13 +104,15 @@ switch($objModulo->getId()){
 				$reporte = new TReporte($_GET['reporte']);
 				
 				$email->setTema(utf8_decode("Reporte de ubicación"));
-				$rs = $db->Execute("select * from usuario where idTipo = 1");
+				$rs = $db->Execute("select * from usuario where idTipo = 1".($_GET['usuario'] == ''?'':(" and idUsuario = ".$_GET['usuario'])));
 				
 				$img = "temporal/img.jpg";
 				file_put_contents($img, file_get_contents("https://maps.googleapis.com/maps/api/staticmap?center=".$reporte->getLatitud().",".$reporte->getLongitud()."&zoom=16&size=300x250&format=JPG&markers=color:green|label:M|".$reporte->getLatitud().",".$reporte->getLongitud().""));
 				
+				$documento = "";
 				while(!$rs->EOF){
 					$email->setDestino($rs->fields['email'], utf8_decode($rs->fiels['nombre']));
+					$documento .= " ".$rs->fields['email'];
 					$datos = array();
 					$usuario->setId($rs->fields['idUsuario']);
 					$datos['nombreCompleto'] = $usuario->getNombre();
@@ -123,7 +134,26 @@ switch($objModulo->getId()){
 				}
 				
 				$result = array("doc" => $documento, "band" => true);
-				echo $result;
+				echo json_encode($result);
+			break;
+			case 'solicitarUbicacionMail':
+				$db = TBase::conectaDB();
+				$email = new TMail;
+				$usuario = new TUsuario($_GET['user']);
+				$origen = new TUsuario($_GET['solicita']);
+				$datos = json_decode(file_get_contents("data.json"));
+				foreach($datos as $key => $val)
+					$config[$key] = $val;
+				
+				$email->setTema(utf8_decode("Solicitud de ubicación"));
+				$email->setDestino($usuario->getEmail(), utf8_decode($usuario->getNombre()));
+				
+				$datos = array();
+				$datos['nombreCompleto'] = $usuario->getNombre();
+				$datos['direccionReportar'] = $config['web']."/?mod=reportarUbicacion&usuario=".base64_encode($usuario->getId())."&solicita=".base64_encode($origen->getId());
+				
+				$email->setBodyHTML(utf8_decode($email->construyeMail(file_get_contents("repositorio/mail/ubicar.txt"), $datos)));
+				echo json_encode(array("band" => $email->send()));
 			break;
 		}
 	break;

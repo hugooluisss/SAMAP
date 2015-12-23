@@ -92,11 +92,12 @@ foreach($_GET as $indice => $valor){
 	$_GET[$indice] = stripslashes($_GET[$indice]);
 	$_GET[$indice] = ereg_replace("'", "''", $_GET[$indice]);
 }
-	
-foreach($_POST as $indice => $valor){	
-	$_POST[$indice] = ereg_replace('\\"', "", $_POST[$indice]);	
-	$_POST[$indice] = ereg_replace("'", "''", $_POST[$indice]);
-}
+
+if ($_GET['mod'] != 'cconfiguracion')	
+	foreach($_POST as $indice => $valor){
+		$_POST[$indice] = ereg_replace('\\"', "", $_POST[$indice]);	
+		$_POST[$indice] = ereg_replace("'", "''", $_POST[$indice]);
+	}
 
 define('TAMPAG', $ini['config']['TAMPAG']);
 define('NUMPAG', $ini['config']['NUMPAG']);

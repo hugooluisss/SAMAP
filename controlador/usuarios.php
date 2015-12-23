@@ -67,6 +67,7 @@ switch($objModulo->getId()){
 				$obj->setEmail($_POST['email']);
 				$obj->setPass($_POST['pass']);
 				$obj->setTipo($_POST['tipo']);
+				$obj->setCelular($_POST['celular']);
 
 				echo json_encode(array("band" => $obj->guardar()));
 			break;

@@ -18,24 +18,27 @@ class TMail{
 * Llama al constructor padre para hacer las conexiones
 */
 	public function TMail(){
-		global $ini;
 		$this->phpMailer = new PHPMailer();
 		$datos = $rs->fields;
 		#$this->phpMailer->CharSet("UTF8");
 		global $ini;
+		$data = json_decode(file_get_contents("data.json"));
+		$configMail = array();
+		foreach($data as $key => $val)
+			$configMail[$key] = $val;
 		
 		$this->empresa['nombreCorto'] = utf8_decode($ini['sistema']['nombreEmpresa']);
 		$this->phpMailer->IsSMTP();
 		$this->phpMailer->Port = 26;
-		$this->phpMailer->Host = $ini['mail']['server'];
-
+		$this->phpMailer->Host = $configMail['servidorEmail'];
 		$this->phpMailer->SMTPAuth = true;
-		$this->phpMailer->Username = $ini['mail']['user'];
-		$this->phpMailer->Password = $ini['mail']['pass'];
+		$this->phpMailer->Username = $configMail['usuarioEmail'];
+		$this->phpMailer->Password = $configMail['passEmail'];
 		$this->phpMailer->IsHTML (true);
 		$this->phpMailer->FromName = utf8_decode($ini['sistema']['nombre']);
-		$this->setDirOrigen($ini['mail']['user']);
+		$this->setDirOrigen($configMail['usuarioEmail']);
 		$this->phpMailer->SMTPSecure = 'tls';
+				
 		if ($ini['mail']['contestarA'] <> '')
 			$this->phpMailer->AddReplyTo($ini['mail']['contestarA']);
 			

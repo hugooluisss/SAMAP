@@ -1,11 +1,11 @@
 TReporte = function(){
 	var self = this;
 	
-	this.add = function(id, latitud, longitud, direccion, campo1, campo2, campo3, fn){
+	this.add = function(usuario, latitud, longitud, direccion, campo1, campo2, campo3, fn){
 		if (fn.before !== undefined) fn.before();
 		
 		$.post('?mod=gw_reporte&action=add', {
-				"id": id,
+				"usuario": usuario,
 				"latitud": latitud, 
 				"longitud": longitud,
 				"direccion": direccion,

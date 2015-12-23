@@ -19,6 +19,7 @@
 						<td>{$row.nombre}</td>
 						<td>{$row.tipo}</td>
 						<td style="text-align: right">
+							<button type="button" class="btn btn-success btn-circle" action="ubicar" title="Solicitar ubicación" usuario="{$row.idUsuario}"><i class="fa fa-map-pin"></i></button>
 							<button type="button" class="btn btn-success btn-circle" action="modificar" title="Modificar" datos='{$row.json}'><i class="fa fa-pencil"></i></button>
 							<button type="button" class="btn btn-danger btn-circle" action="eliminar" title="Eliminar" usuario="{$row.idUsuario}"><i class="fa fa-times"></i></button>
 						</td>

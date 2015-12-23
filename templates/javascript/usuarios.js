@@ -35,6 +35,7 @@ $(document).ready(function(){
 					$("#txtEmail").val(),
 					$("#txtPass").val(),
 					$("#selTipo").val(),
+					$("#txtCelular").val(),
 					{
 						after: function(datos){
 							if (datos.band){
@@ -77,7 +78,14 @@ $(document).ready(function(){
 				$("#txtEmail").val(el.email);
 				$("#txtPass").val(el.pass);
 				$("#selTipo").val(el.idTipo);
+				$("#txtCelular").val(el.celular);
 				$('#panelTabs a[href="#add"]').tab('show');
+			});
+			
+			$("[action=ubicar]").click(function(){
+				var usuario = $(this).attr("usuario");
+				$("#modalUbicar #usuario").val(usuario);
+				$("#modalUbicar").modal();
 			});
 			
 			$("#tblUsuarios").DataTable({
@@ -91,4 +99,20 @@ $(document).ready(function(){
 			});
 		});
 	}
+});
+
+$(document).ready(function(){
+	$("#modalUbicar #sendMail").click(function(){
+		$.get("?mod=gw_reporte&action=solicitarUbicacionMail&user=" + $("#modalUbicar #usuario").val() + "&solicita=" + $("#modalUbicar #origen").val(), function( data ) {
+			if (data.band != true)
+				alert("Ocurrió un error al enviar el correo electrónico");
+			console.log("Email " + data.band);
+		}, "json");
+		
+		alert("El correo electrónico se está enviando, puedes seguir utilizando la aplicación");
+	});
+	
+	$("#modalUbicar #sendSMS").click(function(){
+		alert("Función no disponible");
+	});
 });

@@ -43,7 +43,7 @@ $(document).ready(function(){
 	
 	$("#enviarPorEmail").click(function(){
 		$.get("?mod=gw_reporte&action=reportarViaEMail&reporte=" + $("#modalPosicion #idReporte").val(), function( data ) {
-			alert(data.band);
+			console.log("Email " + data.band);
 		}, "json");
 		
 		alert("El correo electrónico se está enviando, puedes seguir utilizando la aplicación");

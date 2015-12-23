@@ -39,6 +39,21 @@ $conf['bienvenida'] = array(
 	'descripcion' => 'Bienvenida al sistema',
 	'seguridad' => true,
 	'capa' => LAYOUT_DEFECTO);
+	
+$conf['configuracion'] = array(
+	'controlador' => 'administrador.php',
+	'vista' => 'configuracion/panel.tpl',
+	'descripcion' => 'Configuración del sistema',
+	'seguridad' => true,
+	'js' => array('configuracion.class.js'),
+	'jsTemplate' => array('configuracion.js'),
+	'capa' => LAYOUT_DEFECTO);
+
+$conf['cconfiguracion'] = array(
+	'controlador' => 'administrador.php',
+	'descripcion' => 'Controlador de la configuración del sistema',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
 
 $conf['admonUsuarios'] = array(
 	'controlador' => 'usuarios.php',
@@ -85,7 +100,7 @@ $conf['ubicacion'] = array(
 $conf['gw_reporte'] = array(
 	'controlador' => 'reporte.php',
 	'descripcion' => 'Gateway ubicaciones',
-	'seguridad' => true,
+	'seguridad' => false,
 	'capa' => LAYOUT_AJAX);
 	
 $conf['listaReportes'] = array(
@@ -110,4 +125,13 @@ $conf['posicionesPorDia'] = array(
 	'descripcion' => 'Lista de reportes',
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
+
+$conf['reportarUbicacion'] = array(
+	'controlador' => 'reporte.php',
+	'vista' => 'localizacion/getUbicacionUsuario.tpl',
+	'descripcion' => 'A solicitud de un administrador, el usuario reporta su ubicación',
+	'seguridad' => false,
+	'js' => array('mapa.class.js', 'reporte.class.js'),
+	'jsTemplate' => array('localizarUsuario.js'),
+	'capa' => LAYOUT_DEFECTO);
 ?>

@@ -86,6 +86,7 @@
 					<ul class="sidebar-menu">
 						<li class="header">MENÚ PRINCIPAL</li>
 						{if $PAGE.tipoUsuario eq 1}
+						<li {if $PAGE.modulo eq 'configuracion'}class="active"{/if}><a href="?mod=configuracion"><i class="fa fa-edit"></i> Configuración</a></li>
 						<li {if $PAGE.modulo eq 'admonUsuarios'}class="active"{/if}><a href="?mod=admonUsuarios"><i class="fa fa-user"></i> Usuarios</a></li>
 						{/if}
 						
